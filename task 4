@@ -4,7 +4,7 @@ end = int(input('введите конец диапазона: '))
 even_numbers = []
 for num in range(start, end + 1):
     if num % 2 == 0:
-        even_numbers.append(num)
+        even_numbers.append(num) 
 
 if even_numbers:
     for even in even_numbers:
