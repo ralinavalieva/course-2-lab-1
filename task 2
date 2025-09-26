@@ -6,13 +6,11 @@ Warning: Failed login attempt from 10.0.0.5 at 2024-03-21 04:12:22
 Contact admin at ADMIN@DOMAIN.COM or support@service.net
 """
 
-# шаблоны для поиска
 pattern_ip = re.compile(r'\b(?:\d{1,3}\.){3}\d{1,3}\b')
 pattern_timestamp = re.compile(r'\b\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\b')
 pattern_uppercase = re.compile(r'\b[A-Z_]{2,}\b', re.ASCII)
 pattern_email = re.compile(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
 
-# находим все по шаблонам
 ips = pattern_ip.findall(log_text)
 timestamps = pattern_timestamp.findall(log_text)
 upper_words = pattern_uppercase.findall(log_text)
@@ -21,7 +19,6 @@ print("IPv4 адреса:", ips)
 print("Временные метки:", timestamps)
 print("Слова в UPPERCASE:", upper_words)
 
-# заменяем email-адреса
 protected_text = pattern_email.sub("[EMAIL PROTECTED]", log_text)
-print("\nТекст с заменёнными email:")
+print("\nтекст с заменёнными email:")
 print(protected_text)
