@@ -1,0 +1,44 @@
+class Student:
+    def __init__(self, name, group, grades):
+        self.name = name
+        self.group = group
+        self.grades = grades  # список чисел
+
+    def average_grade(self):
+        return sum(self.grades) / len(self.grades)
+
+    def is_excellent(self):
+        return self.average_grade() >= 4.5
+
+
+def main():
+    students = []
+
+
+    with open("students.txt", "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            name, group, grades_str = line.split(";")
+            grades = list(map(float, grades_str.split(",")))
+            student = Student(name, group, grades)
+            students.append(student)
+
+   
+    with open("excellent_students.txt", "w", encoding="utf-8") as f:
+        for s in students:
+            if s.is_excellent():
+                f.write(f"{s.name} - {s.group}\n")
+
+
+    groups = {}
+    for s in students:
+        groups.setdefault(s.group, []).append(s.average_grade())
+
+    for group, averages in groups.items():
+        group_avg = sum(averages) / len(averages)
+        print(f"cредний балл группы {group}: {group_avg:.2f}")
+
+if __name__ == "__main__":
+    main()
