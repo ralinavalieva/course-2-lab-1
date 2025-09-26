@@ -1,0 +1,39 @@
+import numpy as np
+
+np.random.seed(0) 
+
+# Генерируем матрицы A и B 5x5 с целыми числами от 1 до 10
+A = np.random.randint(1, 11, (5, 5))
+B = np.random.randint(1, 11, (5, 5))
+
+print("матрица A:\n", A)
+print("матрица B:\n", B)
+
+
+elem_prod = A * B
+print("поэлементное произведение:\n", elem_prod)
+
+mat_prod = A @ B
+print("матричное произведение:\n", mat_prod)
+
+det_A = np.linalg.det(A)
+print(f"определитель A: {det_A:.2f}")
+
+
+B_T = B.T
+print("транспонированная B:\n", B_T)
+
+if abs(det_A) > 1e-6:
+    A_inv = np.linalg.inv(A)
+    print("обратная матрица A:\n", A_inv)
+else:
+    print("матрица A вырождена, обратная не существует")
+
+C = A.sum(axis=1)
+print("вектор C (сумма строк A):", C)
+
+if abs(det_A) > 1e-6:
+    x = np.linalg.solve(A, C)
+    print("решение системы A*x = C:\n", x)
+else:
+    print("невозможно решить систему, матрица A вырождена.")
