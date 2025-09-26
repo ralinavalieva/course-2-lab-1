@@ -1,0 +1,21 @@
+import math
+
+def safe_apply(func, data):
+    results = []
+    errors = []
+    for elem in data:
+        try:
+            val = func(elem)
+            results.append(val)
+        except Exception as e:
+            errors.append((elem, type(e).__name__))
+    return results, errors
+
+data = ['4', '16', 'text', '-25', '9.0']
+
+sqrt_lambda = lambda x: math.sqrt(float(x))
+
+results, errors = safe_apply(sqrt_lambda, data)
+
+print("результаты:", results)
+print("ошибки:", errors)
