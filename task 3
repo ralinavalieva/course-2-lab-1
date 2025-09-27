@@ -10,14 +10,15 @@ data = {
 
 df = pd.DataFrame(data)
 
-median_price = df['Цена'].median()
-df['Цена'].fillna(median_price, inplace=True)
+median_price = df['цена'].median()  # исправлено название столбца
+df['цена'].fillna(median_price, inplace=True)
 
+# Фильтруем по количеству от 1 до 1000
 df = df[(df['количество'] >= 1) & (df['количество'] <= 1000)]
 
 df['Общая_стоимость'] = df['цена'] * df['количество']
 
-grouped = df.groupby('товар')['общая_стоимость'].sum()
+grouped = df.groupby('товар')['Общая_стоимость'].sum()  # исправлено название столбца
 
 print(grouped)
 
