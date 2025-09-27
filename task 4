@@ -21,7 +21,7 @@ print(f"определитель A: {det_A:.2f}")
 
 
 B_T = B.T
-print("транспонированная B:\n", B_T)
+print("транспонированная B:\n", B_T) #меняет строки на столбцы
 
 if abs(det_A) > 1e-6:
     A_inv = np.linalg.inv(A)
